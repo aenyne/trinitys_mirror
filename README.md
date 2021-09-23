@@ -20,7 +20,7 @@ In a business context, very often a professional look is required, for example a
 
 ## How is it used?
 
-The application will display an icon at the bottom of the video conferencing tool that includes the filter masks. The minimum MVP will be an application for Zoom and will focus only on the lips.
+The application will display an icon at the bottom of the video conferencing tool that includes the filter masks. The minimum product version will be an application for Zoom and will focus only on the lips.
 <br> 
 <br> The user would click on the icon and a banner will be displayed, showing a color palette and products of the partners.
 
@@ -52,6 +52,8 @@ Trinity’s Mirror will create a mask for video conferencing that could be appli
 <br> An additional way could be to use a [Mask R-CNN]( https://engineering.matterport.com/splash-of-color-instance-segmentation-with-mask-r-cnn-and-tensorflow-7c761e238b46) model to separate special regions from the face that could be altered to display makeup (for more info see here, Instance Segmentation) or use a GAN to create makeup filters from images (for more info, see here [PSGAN]( https://github.com/wtjiang98/PSGAN) makeup filter research).
 Trinity’s Mirror Project will develop and test all three possibilities, choosing the best alternative with regard to authenticity of the makeup filter, performance in video streams, flexibility of the model to changes for application (for creating custom filters).
 <br> 
+![PSGAN Pictures](https://github.com/wtjiang98/PSGAN/blob/master/psgan_framework.png)
+<br> 
 <br> A sound amount of datasets for face detection purposes can be find open source in the internet:
 
 |Name of dataset|Link|
@@ -67,18 +69,16 @@ Trinity’s Mirror Project will develop and test all three possibilities, choosi
 |Helen dataset|http://www.ifp.illinois.edu/~vuongle2/helen/ |
 
 The main model will be trained on these free datasets by using transfer learning technique and applying the training to a model pre-trained on ImageNet (like VGG). The later application will also use transfer learning to fetch the trained main model and to use a handful of video sequences from a call to create custom weights for the applicator’s face. 
-
-![PSGAN Pictures](https://github.com/wtjiang98/PSGAN/blob/master/psgan_framework.png)
-
 <br> 
 <br> For the creation of the model the Helen dataset and the ibug 300-W dataset are at the moment the most important ones, as they are already annotated with keypoints. They are all opensource and have a good and diverse base of faces. 
 <br> 
 <br> The Helen and the ibug 300-W dataset are annotated with keypoints as below:
+<br> 
 ![Helen Dataset keypoints]( http://www.ifp.illinois.edu/~vuongle2/helen/data/samples/6.jpg)
-
 <br> 
 <br> For the Instant segmentation (Mask R-CNN) an additional annotation of face regions (e.g. lips) has to be made on a dataset of faces, which will be done by the VIA VGG annotator.
 For the PSGAN model, the dataset also needs to be annotated in order to classify images with makeup styles and images without makeup.
+<br> 
 ![Instance Segmentation]( https://miro.medium.com/max/3000/1*-zw_Mh1e-8YncnokbAFWxg.png)
 
 ## Challenges
